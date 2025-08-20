@@ -1,0 +1,36 @@
+{
+  "tasks": {
+    "build:client": "deno bundle -o ./dist/client.js client.ts",
+    "build:server": "deno compile -A -o ./dist/stack server.ts",
+    "start": "./dist/stack",
+    "dev:client": "deno bundle --watch -o ./dist/client.js client.ts",
+    "dev:server": "deno run -A --watch server.ts",
+    "dev": {
+      "dependencies": ["dev:client", "dev:server"]
+    },
+    "test": "deno lint && deno test"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1",
+    "hono": "jsr:@hono/hono",
+    "preact": "npm:preact@^10.27.1",
+    "preact-render-to-string": "npm:preact-render-to-string@^6.6.0",
+    "wouter-preact": "npm:wouter-preact@^3.7.1"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
+  "fmt": {
+    "useTabs": false,
+    "lineWidth": 80,
+    "indentWidth": 2,
+    "semiColons": false,
+    "singleQuote": true,
+    "proseWrap": "preserve",
+    "exclude": ["dist/"]
+  },
+  "lint": {
+    "exclude": ["dist/"]
+  }
+}
