@@ -2,13 +2,16 @@
   "tasks": {
     "build:client": "deno bundle -o ./dist/client.js client.ts",
     "build:server": "deno compile -A -o ./dist/stack server.ts",
+    "build": {
+      "dependencies": ["build:client", "build:server"]
+    },
     "start": "./dist/stack",
     "dev:client": "deno bundle --watch -o ./dist/client.js client.ts",
     "dev:server": "deno run -A --watch server.ts",
     "dev": {
       "dependencies": ["dev:client", "dev:server"]
     },
-    "test": "deno lint && deno test"
+    "test": "deno lint && deno type && deno test"
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
